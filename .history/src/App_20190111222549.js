@@ -29,7 +29,7 @@ class App extends Component {
               </li>
               <li className="navbar-item">
                 <Link to="/create" className="nav-link">
-                  Create-Todo
+                  Create Todo
                 </Link>
               </li>
             </ul>

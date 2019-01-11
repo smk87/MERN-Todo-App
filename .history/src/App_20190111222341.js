@@ -14,26 +14,28 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="localhost" target="_blank">
+            <a className="navbar-brand" href="localhost/" target="_blank">
               <img src={logo} width="30" height="30" alt="/" />
             </a>
             <Link to="/" className="navbar-brand">
-              MERN-Stack Todo APP
+              MERN-Stack Todo App
             </Link>
-
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/" className="nav-link">
-                  Todos
-                </Link>
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="#">Home</a>
               </li>
-              <li className="navbar-item">
-                <Link to="/create" className="nav-link">
-                  Create-Todo
-                </Link>
+              <li>
+                <a href="#">Page 1</a>
+              </li>
+              <li>
+                <a href="#">Page 2</a>
+              </li>
+              <li>
+                <a href="#">Page 3</a>
               </li>
             </ul>
           </nav>
+
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
