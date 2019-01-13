@@ -1,64 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class CreateTodo extends Component {
+class EditTodo extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
-    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
-    this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      todo_description: "",
-      todo_responsible: "",
-      todo_priority: "",
-      todo_completed: false
-    };
+    this.state = { todos: [] };
   }
 
-  onChangeTodoDescription(e) {
-    this.setState({
-      todo_description: e.target.value
-    });
-  }
-  onChangeTodoResponsible(e) {
-    this.setState({
-      todo_responsible: e.target.value
-    });
-  }
-  onChangeTodoPriority(e) {
-    this.setState({
-      todo_priority: e.target.value
-    });
-  }
-  onSubmit(e) {
-    e.preventDefault();
-
-    console.log(`Form Submitted:`);
-    console.log(`Todo Description: ${this.state.todo_description}`);
-    console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-    console.log(`Todo Priority: ${this.state.todo_priority}`);
-    console.log(`Todo Completed: ${this.state.todo_completed}`);
-
-    const newTodo = {
-      todo_description: this.state.todo_description,
-      todo_responsible: this.state.todo_responsible,
-      todo_priority: this.state.todo_priority,
-      todo_completed: this.state.todo_completed
-    };
-
+  componentDidMount() {
     axios
-      .post("http://localhost:4000/todos/add", newTodo)
-      .then(res => console.log(res.data));
-
-    this.setState({
-      todo_description: "",
-      todo_responsible: "",
-      todo_priority: "",
-      todo_completed: false
-    });
+      .get("http://localhost:4000/todos/")
+      .then(res => {
+        this.setState({ todos: res.data });
+        console.log(this.state.todos[0].todo_description);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -71,7 +30,7 @@ class CreateTodo extends Component {
             <input
               type="text"
               className="form-control"
-              value={this.state.todo_description}
+              value={this.state}
               onChange={this.onChangeTodoDescription}
             />
           </div>
@@ -135,4 +94,4 @@ class CreateTodo extends Component {
   }
 }
 
-export default CreateTodo;
+export default EditTodo;

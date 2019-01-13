@@ -80,7 +80,7 @@ class CreateTodo extends Component {
             <input
               type="text"
               className="form-control"
-              value={this.state.todo_responsible}
+              value={aa}
               onChange={this.onChangeTodoResponsible}
             />
           </div>

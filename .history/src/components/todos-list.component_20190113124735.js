@@ -9,9 +9,7 @@ const Todo = props => {
       <td>{props.todo.todo_responsilbe}</td>
       <td>{props.todo.todo_priority}</td>
 
-      <Link to={"/edit/" + props.todo._id}>
-        <h5>Edit</h5>
-      </Link>
+      <Link to={"/edit/" + props.todo._id}>Edit</Link>
     </tr>
   );
 };
